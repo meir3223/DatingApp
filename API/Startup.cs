@@ -37,6 +37,8 @@ namespace API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPIv5", Version = "v1" });
             });
+
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +56,14 @@ namespace API
 
             // Use routing to route to defined routes
             app.UseRouting();
+
+            // UseCors must be configured between UseRouting and UseAuthorization
+            // Tell browser that http://localhost:4200/ origin is allowed to request from API with any header passed
+            // for any method (get put ....)
+            // Response header contains access-control-allow-origin: http://localhost:4200
+            // So Server allows http://localhost:4200 to request. For That chrome will not block response 
+            // because the server passed access-control-allow-origin: http://localhost:4200 saying server allows requests
+            app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
 
             app.UseAuthorization();
 
