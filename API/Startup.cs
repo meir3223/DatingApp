@@ -63,7 +63,7 @@ namespace API
             // Response header contains access-control-allow-origin: http://localhost:4200
             // So Server allows http://localhost:4200 to request. For That chrome will not block response 
             // because the server passed access-control-allow-origin: http://localhost:4200 saying server allows requests
-            app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
+            app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins(new string[2]{"http://localhost:4200", "https://localhost:4200"}));
 
             app.UseAuthorization();
 
