@@ -22,10 +22,19 @@
             >
           </li>
         </ng-container>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/errors" routerLinkActive="active">errors</a>
+        </li>
       </ul>
 
-      <div class="dropdown"  *ngIf="(accountService.currentUser$ | async) as user"  dropdown>
-        <a class="dropdown-toggle text-light" dropdownToggle>Welcome {{user.userName | titlecase}}</a>
+      <div
+        class="dropdown"
+        *ngIf="accountService.currentUser$ | async as user"
+        dropdown
+      >
+        <a class="dropdown-toggle text-light" dropdownToggle
+          >Welcome {{ user.userName | titlecase }}</a
+        >
         <div class="dropdown-menu mt-3" *dropdownMenu="">
           <a class="dropdown-item">Edit Profile</a>
           <div class="dropdown- divider"></div>
@@ -54,9 +63,7 @@
           type="password"
           placeholder="Password"
         />
-        <button class="btn btn-success my-2 my-sm0" type="submit">
-          Login
-        </button>
+        <button class="btn btn-success my-2 my-sm0" type="submit">Login</button>
       </form>
     </div>
   </div>
